@@ -65,7 +65,7 @@
                     <mxGeometry y="218" width="192" height="24" as="geometry"/>
                 </mxCell>
                 <mxCell id="10" value="Shipping_Information" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=14;strokeWidth=2;" vertex="1" parent="1">
-                    <mxGeometry x="224" y="280" width="160" height="166" as="geometry"/>
+                    <mxGeometry x="224" y="280" width="160" height="170" as="geometry"/>
                 </mxCell>
                 <mxCell id="43" value="postal_code" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="10">
                     <mxGeometry y="26" width="160" height="24" as="geometry"/>
@@ -82,8 +82,8 @@
                 <mxCell id="49" value="phone_number" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeWidth=1;" vertex="1" parent="10">
                     <mxGeometry y="122" width="160" height="24" as="geometry"/>
                 </mxCell>
-                <mxCell id="50" value="user_name" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="10">
-                    <mxGeometry y="146" width="160" height="20" as="geometry"/>
+                <mxCell id="50" value="nickname" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="10">
+                    <mxGeometry y="146" width="160" height="24" as="geometry"/>
                 </mxCell>
                 <mxCell id="60" value="" style="endArrow=ERone;html=1;rounded=0;strokeColor=#f0f0f0;strokeWidth=1;startArrow=ERone;startFill=0;endFill=0;endSize=5;startSize=5;entryX=0;entryY=0;entryDx=0;entryDy=0;exitX=1;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="2" target="10">
                     <mxGeometry relative="1" as="geometry">
