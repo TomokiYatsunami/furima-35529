@@ -4,7 +4,6 @@
 | ------------------ | ------ | ------------------------- |
 | nickname           | string | null: false               |
 | email              | string | null: false, unique: true |
-| password           | string | null: false               |
 | encrypted_password | string | null: false               |
 | first_name         | string | null: false               |
 | last_name          | string | null: false               |
@@ -23,13 +22,13 @@ has_many :purchase_records dependent: :destroy
 | Column       | Type    | Options                       |
 | ------------ | ------- | ----------------------------- |
 | product_name | string  | null: false                   |
-| description  | string  | null: false                   |
+| description  | text    | null: false                   |
 | category     | string  | null: false                   |
 | status       | text    | null: false                   |
 | ship_price   | string  | null: false                   |
 | ship_from    | string  | null: false                   |
 | ship_date    | string  | null: false                   |
-| price        | string  | null: false                   |
+| price        | integer | null: false                   |
 | user_id      | integer | null: false, foreign_key:true |
 
 ### Association
@@ -45,8 +44,8 @@ has_one :purchase_record
 | prefecture         | string  | null: false                   |
 | city               | string  | null: false                   |
 | address            | string  | null: false                   |
+| building           | string  |                               |
 | phone_number       | string  | null: false                   |
-| user_id            | integer | null: false, foreign_key:true |
 | purchase_record_id | integer | null: false, foreign_key:true |
 ### Association
 
@@ -57,7 +56,6 @@ belongs_to :purchase_record
 
 | Column       | Type    | Options                       |
 | ------------ | ------- | ----------------------------- |
-| shop_history | string  | null: false                   |
 | user_id      | integer | null: false, foreign_key:true |
 | product_id   | integer | null: false, foreign_key:true |
 
