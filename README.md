@@ -40,7 +40,7 @@ belongs_to_active_hash :status
 belongs_to_active_hash :ship_date
 belongs_to_active_hash :ship_price
 
-## Shipping_Informationテーブル
+## Shipping_Informationsテーブル
 
 | Column             | Type    | Options                       |
 | ------------------ | ------- | ----------------------------- |
