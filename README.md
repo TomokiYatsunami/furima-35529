@@ -19,38 +19,42 @@ has_many :purchase_records dependent: :destroy
 
 ## Products
 
-| Column       | Type    | Options                       |
-| ------------ | ------- | ----------------------------- |
-| product_name | string  | null: false                   |
-| description  | text    | null: false                   |
-| category     | string  | null: false                   |
-| status       | text    | null: false                   |
-| ship_price   | string  | null: false                   |
-| ship_from    | string  | null: false                   |
-| ship_date    | string  | null: false                   |
-| price        | integer | null: false                   |
-| user_id      | integer | null: false, foreign_key:true |
+| Column        | Type    | Options                       |
+| ------------- | ------- | ----------------------------- |
+| product_name  | string  | null: false                   |
+| description   | text    | null: false                   |
+| status        | text    | null: false                   |
+| ship_price    | string  | null: false                   |
+| ship_date     | string  | null: false                   |
+| price         | integer | null: false                   |
+| user_id       | integer | null: false, foreign_key:true |
+| category_id   | integer | null: false                   |
+| prefecture_id | integer | null: false                   |
 
 ### Association
 
 belongs to :user
 has_one :purchase_record
+belongs_to_active_hash :prefecture
+belongs_to_active_hash :category
 
 ## Shipping_Informationテーブル
 
 | Column             | Type    | Options                       |
 | ------------------ | ------- | ----------------------------- |
 | postal_code        | string  | null: false                   |
-| prefecture         | string  | null: false                   |
 | city               | string  | null: false                   |
 | address            | string  | null: false                   |
 | building           | string  |                               |
 | phone_number       | string  | null: false                   |
 | purchase_record_id | integer | null: false, foreign_key:true |
+| prefecture_id      | integer | null: false, foreign_key:true |
+
 ### Association
 
 belongs to :user
 belongs_to :purchase_record
+belongs_to_active_hash :prefecture
 
 ## Purchase_Recordsテーブル
 
