@@ -14,7 +14,6 @@
 ### Associationテーブル
 
 has_many :products dependent: :destroy
-has_many :shipping_information dependent: :destroy
 has_many :purchase_records dependent: :destroy
 
 ## Products
@@ -54,7 +53,6 @@ belongs_to_active_hash :ship_date
 
 ### Association
 
-belongs to :user
 belongs_to :purchase_record
 belongs_to_active_hash :prefecture
 
