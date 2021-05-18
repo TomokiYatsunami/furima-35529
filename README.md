@@ -13,8 +13,8 @@
 
 ### Associationテーブル
 
-has_many :products dependent: :destroy
-has_many :purchase_records dependent: :destroy
+has_many :products
+has_many :purchase_records
 
 ## Products
 
@@ -23,7 +23,7 @@ has_many :purchase_records dependent: :destroy
 | product_name  | string  | null: false                   |
 | description   | text    | null: false                   |
 | status_id     | integer | null: false                   |
-| ship_price    | integer | null: false                   |
+| ship_price_id | integer | null: false                   |
 | ship_date_id  | integer | null: false                   |
 | price         | integer | null: false                   |
 | user_id       | integer | null: false, foreign_key:true |
@@ -38,6 +38,7 @@ belongs_to_active_hash :prefecture
 belongs_to_active_hash :category
 belongs_to_active_hash :status
 belongs_to_active_hash :ship_date
+belongs_to_active_hash :ship_price
 
 ## Shipping_Informationテーブル
 
