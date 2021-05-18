@@ -1,24 +1,71 @@
-# README
+## Usersテーブル
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+| Column             | Type   | Options                   |
+| ------------------ | ------ | ------------------------- |
+| nickname           | string | null: false               |
+| email              | string | null: false, unique: true |
+| encrypted_password | string | null: false               |
+| first_name         | string | null: false               |
+| last_name          | string | null: false               |
+| first_name_kana    | string | null: false               |
+| last_name_kana     | string | null: false               |
+| birthday           | date   | null: false               |
 
-Things you may want to cover:
+### Associationテーブル
 
-* Ruby version
+has_many :products
+has_many :purchase_records
 
-* System dependencies
+## Products
 
-* Configuration
+| Column        | Type    | Options                       |
+| ------------- | ------- | ----------------------------- |
+| product_name  | string  | null: false                   |
+| description   | text    | null: false                   |
+| status_id     | integer | null: false                   |
+| ship_price_id | integer | null: false                   |
+| ship_date_id  | integer | null: false                   |
+| price         | integer | null: false                   |
+| user_id       | integer | null: false, foreign_key:true |
+| category_id   | integer | null: false                   |
+| prefecture_id | integer | null: false                   |
 
-* Database creation
+### Association
 
-* Database initialization
+belongs to :user
+has_one :purchase_record
+belongs_to_active_hash :prefecture
+belongs_to_active_hash :category
+belongs_to_active_hash :status
+belongs_to_active_hash :ship_date
+belongs_to_active_hash :ship_price
 
-* How to run the test suite
+## Shipping_Informationsテーブル
 
-* Services (job queues, cache servers, search engines, etc.)
+| Column             | Type    | Options                       |
+| ------------------ | ------- | ----------------------------- |
+| postal_code        | string  | null: false                   |
+| city               | string  | null: false                   |
+| address            | string  | null: false                   |
+| building           | string  |                               |
+| phone_number       | string  | null: false                   |
+| purchase_record_id | integer | null: false, foreign_key:true |
+| prefecture_id      | integer | null: false                   |
 
-* Deployment instructions
+### Association
 
-* ...
+belongs_to :purchase_record
+belongs_to_active_hash :prefecture
+
+## Purchase_Recordsテーブル
+
+| Column       | Type    | Options                       |
+| ------------ | ------- | ----------------------------- |
+| user_id      | integer | null: false, foreign_key:true |
+| product_id   | integer | null: false, foreign_key:true |
+
+### Association
+
+belongs to :user
+has_one :shipping_information
+belongs_to :product
