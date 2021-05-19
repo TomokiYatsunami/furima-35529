@@ -14,7 +14,7 @@
 ### Associationテーブル
 
 has_many :products
-has_many :purchase_records
+has_many :records
 
 ## Products
 
@@ -40,7 +40,7 @@ belongs_to_active_hash :status
 belongs_to_active_hash :ship_date
 belongs_to_active_hash :ship_price
 
-## Shipping_Informationsテーブル
+## Shipsテーブル
 
 | Column             | Type    | Options                       |
 | ------------------ | ------- | ----------------------------- |
@@ -49,15 +49,15 @@ belongs_to_active_hash :ship_price
 | address            | string  | null: false                   |
 | building           | string  |                               |
 | phone_number       | string  | null: false                   |
-| purchase_record_id | integer | null: false, foreign_key:true |
+| record_id          | integer | null: false, foreign_key:true |
 | prefecture_id      | integer | null: false                   |
 
 ### Association
 
-belongs_to :purchase_record
+belongs_to :record
 belongs_to_active_hash :prefecture
 
-## Purchase_Recordsテーブル
+## Recordsテーブル
 
 | Column       | Type    | Options                       |
 | ------------ | ------- | ----------------------------- |
@@ -67,5 +67,5 @@ belongs_to_active_hash :prefecture
 ### Association
 
 belongs to :user
-has_one :shipping_information
+has_one :ship
 belongs_to :product
