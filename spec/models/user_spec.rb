@@ -6,6 +6,10 @@ RSpec.describe User, type: :model do
       @user = FactoryBot.build(:user)
     end
 
+    it "全ての項目の入力が存在すれば登録できる" do
+      expect(@user).to be_valid
+    end
+
     it 'nicknameが空では登録できない' do
       @user.nickname = ''  
       @user.valid?
