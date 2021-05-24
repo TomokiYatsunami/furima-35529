@@ -35,31 +35,31 @@ RSpec.describe Product, type: :model do
       end
 
       it "category_idが1では出品できない" do
-        @product.category_id = '1'  
+        @product.category_id = 1  
         @product.valid?
         expect(@product.errors.full_messages).to include "Category must be other than 1"
       end
 
       it "status_idが1では出品できない" do
-        @product.status_id = '1'  
+        @product.status_id = 1  
         @product.valid?
         expect(@product.errors.full_messages).to include "Status must be other than 1"
       end
 
       it "ship_price_idが1では出品できない" do
-        @product.ship_price_id = '1'  
+        @product.ship_price_id = 1  
         @product.valid?
         expect(@product.errors.full_messages).to include "Ship price must be other than 1"
       end
 
       it "prefecture_idが1では出品できない" do
-        @product.prefecture_id = '1'  
+        @product.prefecture_id = 1  
         @product.valid?
         expect(@product.errors.full_messages).to include "Prefecture must be other than 1"
       end
 
       it "ship_date_idが1では出品できない" do
-        @product.ship_date_id = '1'  
+        @product.ship_date_id = 1  
         @product.valid?
         expect(@product.errors.full_messages).to include "Ship date must be other than 1"
       end
@@ -71,13 +71,13 @@ RSpec.describe Product, type: :model do
       end
 
       it "priceが300より下では出品できない" do
-        @product.price = '299'  
+        @product.price = 299 
         @product.valid?
         expect(@product.errors.full_messages).to include "Price must be greater than or equal to 300"
       end
 
       it "priceが9999999より上では出品できない" do
-        @product.price = '10000000'  
+        @product.price = 10000000
         @product.valid?
         expect(@product.errors.full_messages).to include "Price must be less than or equal to 9999999"
       end
