@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
-  before_action :set_product, only: [:show, :edit, :update]
-  before_action :move_to_top_page,  only: [:edit, :update]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :move_to_top_page,  only: [:edit, :update, :destroy]
 
   def index
     @products = Product.all.order(id: "DESC")
@@ -35,6 +35,9 @@ class ProductsController < ApplicationController
   end
 
   def destroy
+    if @prototype.destroy
+      redirect_to root_path
+    end
   end
 
   private
