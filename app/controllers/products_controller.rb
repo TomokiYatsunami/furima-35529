@@ -1,5 +1,6 @@
-class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+class ProductsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create, :edit]
+  before_action :move_to_top_page,  only: [:edit, :update]
 
   def index
     @products = Product.all.order(id: "DESC")
@@ -14,7 +15,7 @@ class ItemsController < ApplicationController
     if @product.save
       redirect_to root_path
     else
-      render new_item_path
+      render new_product_path
     end
   end
 
@@ -23,9 +24,16 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    @product = Product.find(params[:id])
   end
 
   def update
+    @product = Product.find(params[:id])
+    if @product.update(product_params)
+      redirect_to product_path(@product)
+    else
+      render :edit
+    end
   end
 
   private
@@ -33,4 +41,12 @@ class ItemsController < ApplicationController
   def product_params
     params.require(:product).permit(:image, :product_name, :description, :price, :status_id, :ship_price_id, :ship_date_id, :category_id, :prefecture_id).merge(user_id: current_user.id)
   end
+
+  def move_to_top_page
+    @product = Product.find(params[:id])
+    unless current_user == @product.user
+      redirect_to root_path 
+    end
+  end
+
 end
