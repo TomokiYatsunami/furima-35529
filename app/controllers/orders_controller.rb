@@ -1,11 +1,11 @@
 class OrdersController < ApplicationController
 
   def index
-    @ship_record = ShipRecoed.index
+    @ship_record = ShipRecord.new
   end
 
   def create
-    @ship_record = ShipRecoed.index(record_params)
+    @ship_record = ShipRecord.new(record_params)
     if @ship_record.valid?
       @ship_record.save
       redirect_to root_path
