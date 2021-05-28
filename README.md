@@ -33,7 +33,7 @@ has_many :records
 ### Association
 
 belongs to :user
-has_one :purchase_record
+has_one :record
 belongs_to_active_hash :prefecture
 belongs_to_active_hash :category
 belongs_to_active_hash :status
