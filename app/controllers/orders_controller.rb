@@ -2,10 +2,12 @@ class OrdersController < ApplicationController
 
   def index
     @ship_record = ShipRecord.new
+    @product = Product.find(params[:product_id])
   end
 
   def create
-    @ship_record = ShipRecord.new(record_params)
+    @product = Product.find(params[:product_id])
+    @ship_record = ShipRecord.new(ship_record_params)
     if @ship_record.valid?
       @ship_record.save
       redirect_to root_path
@@ -16,8 +18,8 @@ class OrdersController < ApplicationController
 
   private
 
-  def record_params
-    params.require(:ship_record).permit(:postal_code, :city, :address, :building, :phone_number, :prefecture_id, :record_id, :user_id, :product_id).merge(user_id: current_user.id)
+  def ship_record_params
+    params.require(:ship_record).permit(:postal_code, :city, :address, :building, :phone_number, :prefecture_id).merge(user_id: current_user.id, product_id: params[:product_id])
   end
 
 end
