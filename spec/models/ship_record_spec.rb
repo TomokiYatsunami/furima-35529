@@ -11,7 +11,7 @@ RSpec.describe ShipRecord, type: :model do
   describe '商品購入機能' do
     context '商品の購入ができる時' do
       
-      it "全ての項目の入力が存在すれば登録できる" do
+      it "クレジットカードのtoken及び全ての項目の入力が存在すれば登録できる" do
         expect(@ship_record).to be_valid
       end
 
@@ -59,6 +59,12 @@ RSpec.describe ShipRecord, type: :model do
         @ship_record.phone_number = "012345678910"
         @ship_record.valid?
         expect(@ship_record.errors.full_messages).to include "Phone number is invalid"
+      end
+
+      it "tokenが空では登録できないこと" do
+        @ship_record.token = nil
+        @ship_record.valid?
+        expect(@ship_record.errors.full_messages).to include("Token can't be blank")
       end
 
     end

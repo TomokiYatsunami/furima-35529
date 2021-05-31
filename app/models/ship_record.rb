@@ -4,7 +4,7 @@ class ShipRecord
 
   with_options presence: true do
     validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/ }
-    validates :city, :address, :user_id, :product_id
+    validates :city, :address, :user_id, :product_id, :token
     validates :phone_number, format: { with: /\A\d{11}\z/ }
     validates :prefecture_id, numericality: { other_than: 1 }
   end
