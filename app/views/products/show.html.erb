@@ -8,31 +8,30 @@
     </h2>
     <div class="item-img-content">
       <%= image_tag  @product.image ,class:"item-box-img" %>
-      <%# 商品が売れている場合は、sold outを表示しましょう %>
-      <div class="sold-out">
-        <span>Sold Out!!</span>
-      </div>
-      <%# //商品が売れている場合は、sold outを表示しましょう %>
+      <% if @product.record.present? %>
+        <div class="sold-out">
+          <span>Sold Out!!</span>
+        </div>
+      <% end %>
     </div>
     <div class="item-price-box">
       <span class="item-price">
-        ¥ <%=  @product.price %>
+        ¥ <%= @product.price %>
       </span>
       <span class="item-postage">
         <%= @product.ship_price.name %>
       </span>
     </div>
 
-    <% if current_user == @product.user %>
-    <%= link_to "商品の編集", edit_product_path, method: :get, class: "item-red-btn" %>
-    <p class="or-text">or</p>
-    <%= link_to "削除", product_path, method: :delete, class:"item-destroy" %>
+    <% if user_signed_in? && @product.record == nil %>
+      <% if current_user == @product.user %>
+        <%= link_to "商品の編集", edit_product_path, method: :get, class: "item-red-btn" %>
+        <p class="or-text">or</p>
+        <%= link_to "削除", product_path, method: :delete, class:"item-destroy" %>
+      <% else %>
+        <%= link_to "購入画面に進む", product_orders_path(@product.id), class:"item-red-btn"%>
+      <% end %>
     <% end %>
-    <%# 商品が売れていない場合はこちらを表示しましょう %>
-    <% if user_signed_in? && current_user != @product.user %>
-    <%= link_to "購入画面に進む", "#" ,class:"item-red-btn"%>
-    <% end %>
-    <%# //商品が売れていない場合はこちらを表示しましょう %>
 
     <div class="item-explain-box">
       <span><%= @product.description %></span>

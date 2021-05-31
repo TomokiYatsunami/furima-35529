@@ -47,7 +47,7 @@ class ProductsController < ApplicationController
   end
 
   def move_to_top_page
-    unless current_user == @product.user
+    unless current_user == @product.user && @product.record == nil
       redirect_to root_path 
     end
   end
