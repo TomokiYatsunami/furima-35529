@@ -1,12 +1,13 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!, only: [:index]
+  before_action :set_product, only: [:index, :create]
+  before_action :move_to_index, only: [:index]
 
   def index
     @ship_record = ShipRecord.new
-    @product = Product.find(params[:product_id])
   end
 
   def create
-    @product = Product.find(params[:product_id])
     @ship_record = ShipRecord.new(ship_record_params)
     if @ship_record.valid?
       pay_item
@@ -30,6 +31,16 @@ class OrdersController < ApplicationController
       card: ship_record_params[:token],
       currency: 'jpy'
     )
+  end
+
+  def move_to_index
+    if current_user == @product.user || @product.record.present?
+      redirect_to root_path
+    end
+  end
+
+  def set_product
+    @product = Product.find(params[:product_id])
   end
 
 end
