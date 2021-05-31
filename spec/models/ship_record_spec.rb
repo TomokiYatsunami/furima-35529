@@ -72,6 +72,42 @@ RSpec.describe ShipRecord, type: :model do
         expect(@ship_record.errors.full_messages).to include("Token can't be blank")
       end
 
+      it '電話番号が数字のみでないと登録できないこと(英数混合)' do
+        @ship_record.phone_number = "0i60y90t98"
+        @ship_record.valid?
+        expect(@ship_record.errors.full_messages).to include "Phone number is invalid"
+      end
+
+      it '電話番号が数字のみでないと登録できないこと(ハイフンあり)' do
+        @ship_record.phone_number = "012-456-8910"
+        @ship_record.valid?
+        expect(@ship_record.errors.full_messages).to include "Phone number is invalid"
+      end
+
+      it '電話番号が9桁以下では登録できないこと' do
+        @ship_record.phone_number = "012345678"
+        @ship_record.valid?
+        expect(@ship_record.errors.full_messages).to include "Phone number is invalid"
+      end
+  
+      it '電話番号が全角数字だと登録できないこと' do
+        @ship_record.phone_number = "０９６２３４５６７８"
+        @ship_record.valid?
+        expect(@ship_record.errors.full_messages).to include "Phone number is invalid"
+      end
+
+      it 'user_idが空では購入できないこと' do
+        @ship_record.user_id = ''
+        @ship_record.valid?
+        expect(@ship_record.errors.full_messages).to include "User can't be blank"
+      end
+      
+      it 'product_idが空では購入できないこと' do
+        @ship_record.product_id = ''
+        @ship_record.valid?
+        expect(@ship_record.errors.full_messages).to include "Product can't be blank"
+      end
+
     end
   end
 end
