@@ -15,6 +15,11 @@ RSpec.describe ShipRecord, type: :model do
         expect(@ship_record).to be_valid
       end
 
+      it 'buildingが空でも登録できる' do
+        @ship_record.building = ''
+        expect(@ship_record).to be_valid
+      end
+
     end
 
     context '商品の購入ができない時' do

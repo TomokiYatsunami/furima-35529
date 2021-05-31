@@ -1,6 +1,6 @@
 class ShipRecord
   include ActiveModel::Model
-  attr_accessor :postal_code, :city, :address, :building, :phone_number, :prefecture_id, :record_id, :user_id, :product_id, :token
+  attr_accessor :postal_code, :city, :address, :building, :phone_number, :prefecture_id, :user_id, :product_id, :token
 
   with_options presence: true do
     validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/ }
